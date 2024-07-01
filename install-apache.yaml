@@ -1,0 +1,18 @@
+---
+- name: Create a RHEL 9.4 server as oeprating system from scratch. Install Apache and start apache on this server.
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install RHEL 9.4
+      ansible.builtin.package:
+        name: rhel-9.4-for-x86_64-baseos-e4s-rpms
+        state: present
+    - name: Install Apache
+      ansible.builtin.package:
+        name: httpd
+        state: present
+    - name: Start Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
